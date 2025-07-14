@@ -50,6 +50,11 @@
             box-shadow: 0 2px 10px rgba(0,0,0,0.05);
         }
 
+        .step-security {
+            background: #fff3cd;
+            border-left: 5px solid #ffc107;
+        }
+
         .step-number {
             display: inline-block;
             background: #1976d2;
@@ -64,11 +69,19 @@
             margin-bottom: 20px;
         }
 
+        .step-number-security {
+            background: #ff9800;
+        }
+
         .step-title {
             font-size: 1.4em;
             color: #2c3e50;
             margin-bottom: 15px;
             font-weight: bold;
+        }
+
+        .step-title-security {
+            color: #f57c00;
         }
 
         .step-content {
@@ -107,6 +120,12 @@
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .step-text-security {
+            background: #fff;
+            color: #856404;
+            border-left: 3px solid #ff9800;
         }
 
         .button-info {
@@ -239,6 +258,30 @@
         <div class="header">
             <h1 class="title">多言語音声読み上げPowerpoint</h1>
             <p class="subtitle">使用方法ガイド</p>
+        </div>
+
+        <!-- ステップ0: セキュリティ設定 -->
+        <div class="step step-security">
+            <div class="step-number step-number-security">0</div>
+            <h2 class="step-title step-title-security">セキュリティ設定（重要）</h2>
+            <div class="step-content">
+                <div class="step-image">
+                    <img src="https://page1.genspark.site/v1/base64_upload/0c9e95b913e3ce287745e8e43e06aff4" alt="PowerPointプロパティ画面" onclick="openModal(this)">
+                </div>
+                <div class="step-description">
+                    <div class="step-text step-text-security">
+                        <strong>使用する前にPowerPointファイルを右クリックしプロパティを開き、最下部にあるセキュリティの許可するにチェックを入れてください。</strong>
+                        <br><br>
+                        この設定により、PowerPointファイルを使用できるようになります。
+                        <br><br>
+                        <strong>手順：</strong><br>
+                        1. PowerPointファイルを右クリック<br>
+                        2. 「プロパティ」を選択<br>
+                        3. 最下部の「セキュリティ」欄で「許可する(K)」にチェック<br>
+                        4. 「OK」をクリック
+                    </div>
+                </div>
+            </div>
         </div>
 
         <!-- ステップ1 -->
