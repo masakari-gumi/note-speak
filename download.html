@@ -257,10 +257,10 @@
     <script>
     function downloadFile() {
         const btn = document.querySelector('.download-btn');
-        btn.innerHTML = '⏳ ダウンロード中...';
+        btn.innerHTML = 'ダウンロード中...';
         btn.disabled = true;
         
-        const downloadUrl = 'https://github.com/masakari-gumi/note-speak/releases/download/notespeak/default.pptm';
+        const downloadUrl = 'https://github.com/masakari-gumi/note-speak/releases/download/pptm/default.pptm';
         
         const link = document.createElement('a');
         link.href = downloadUrl;
@@ -272,7 +272,7 @@
         document.body.removeChild(link);
         
         setTimeout(() => {
-            btn.innerHTML = '📥 ダウンロード';
+            btn.innerHTML = 'ダウンロード';
             btn.disabled = false;
         }, 1500);
     }
