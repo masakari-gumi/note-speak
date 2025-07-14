@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PowerPoint 音声読み上げ対応版 - ダウンロード</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #ffffff;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            padding: 40px 20px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .title {
+            font-size: 2.2em;
+            color: #2c3e50;
+            margin-bottom: 15px;
+        }
+
+        .features {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .feature-tag {
+            background: #e8f4fd;
+            color: #1976d2;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            border: 1px solid #bbdefb;
+        }
+
+        .setup-section {
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .setup-title {
+            font-size: 1.5em;
+            color: #d32f2f;
+            margin-bottom: 20px;
+        }
+
+        .setup-text {
+            font-size: 1.1em;
+            color: #555;
+            margin-bottom: 30px;
+            background: #fff3e0;
+            padding: 15px;
+            border-radius: 8px;
+        }
+
+        .images-container {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin: 30px 0;
+        }
+
+        .setup-image {
+            width: 45%;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            border: 1px solid #e0e0e0;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .setup-image:hover {
+            transform: scale(1.02);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+        }
+
+        .download-section {
+            text-align: center;
+            padding: 40px 20px;
+            background: #fafafa;
+            border-radius: 12px;
+            margin-top: 30px;
+        }
+
+        .download-btn {
+            background: #1976d2;
+            color: white;
+            padding: 18px 50px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1.2em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(25, 118, 210, 0.3);
+        }
+
+        .download-btn:hover {
+            background: #1565c0;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(25, 118, 210, 0.4);
+        }
+
+        .windows-notice {
+            background: #ffebee;
+            color: #c62828;
+            padding: 12px;
+            border-radius: 6px;
+            margin: 20px 0;
+            font-weight: 500;
+        }
+
+        .file-info {
+            color: #666;
+            font-size: 0.9em;
+            margin-top: 15px;
+        }
+
+        /* モーダル用のスタイル */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.8);
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal-content {
+            position: relative;
+            margin: auto;
+            padding: 20px;
+            width: 90%;
+            max-width: 800px;
+            top: 50%;
+            transform: translateY(-50%);
+            text-align: center;
+        }
+
+        .modal-image {
+            max-width: 100%;
+            max-height: 80vh;
+            border-radius: 8px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+            animation: zoomIn 0.3s ease;
+        }
+
+        .close {
+            position: absolute;
+            top: 10px;
+            right: 25px;
+            color: white;
+            font-size: 35px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .close:hover {
+            color: #ff6b6b;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes zoomIn {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        @media (max-width: 768px) {
+            .images-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            .setup-image {
+                width: 90%;
+            }
+            .features {
+                flex-direction: column;
+                align-items: center;
+            }
+            .modal-content {
+                width: 95%;
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1 class="title">多言語音声読み上げPowerpoint</h1>
+            <div class="features">
+                <div class="feature-tag">日本語対応</div>
+                <div class="feature-tag">中国語対応</div>
+                <div class="feature-tag">ベトナム語対応</div>
+                <div class="feature-tag">インドネシア語対応</div>
+            </div>
+        </div>
+
+        <div class="setup-section">
+            <h2 class="setup-title">使用前の設定手順</h2>
+            <div class="setup-text">
+                <strong>使用するにあたって設定から音声と言語を追加してください</strong>
+            </div>
+            
+            <div class="images-container">
+                <img src="https://page1.genspark.site/v1/base64_upload/4e43d6be01224e7eabb34b8c9583edd9" alt="音声パッケージ設定画面" class="setup-image" onclick="openModal(this)">
+                <img src="https://page1.genspark.site/v1/base64_upload/236fe65fd38c28f10a506a89a0aece7c" alt="言語と地域設定画面" class="setup-image" onclick="openModal(this)">
+            </div>
+        </div>
+
+        <div class="download-section">
+            <button class="download-btn" onclick="downloadFile()">
+                ダウンロード
+            </button>
+            
+            <div class="windows-notice">
+                ⚠️ Windowsのみ対応しています
+            </div>
+        </div>
+    </div>
+
+    <!-- モーダル -->
+    <div id="imageModal" class="modal" onclick="closeModal()">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <img id="modalImage" class="modal-image" src="" alt="">
+        </div>
+    </div>
+
+    <script>
+        function downloadFile() {
+            const btn = document.querySelector('.download-btn');
+            btn.innerHTML = '準備中...';
+            
+            setTimeout(() => {
+                btn.innerHTML = 'ダウンロード';
+                alert('ダウンロードを開始します');
+            }, 1500);
+        }
+
+        function openModal(image) {
+            const modal = document.getElementById('imageModal');
+            const modalImage = document.getElementById('modalImage');
+            
+            modal.style.display = 'block';
+            modalImage.src = image.src;
+            modalImage.alt = image.alt;
+            
+            // bodyのスクロールを無効化
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('imageModal');
+            modal.style.display = 'none';
+            
+            // bodyのスクロールを有効化
+            document.body.style.overflow = 'auto';
+        }
+
+        // ESCキーでモーダルを閉じる
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>
