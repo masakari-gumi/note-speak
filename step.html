@@ -121,6 +121,48 @@
             margin-bottom: 8px;
         }
 
+        /* 注意事項セクション */
+        .notice-section {
+            background: #fafafa;
+            border-radius: 12px;
+            padding: 30px;
+            margin-top: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .notice-title {
+            font-size: 1.5em;
+            color: #856404;
+            margin-bottom: 20px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .notice-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .notice-item {
+            background: #ffffff;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            box-shadow: 0 1px 5px rgba(0,0,0,0.1);
+        }
+
+        .notice-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .notice-text {
+            color: #856404;
+            font-size: 1.05em;
+            line-height: 1.7;
+        }
+
         /* モーダル用のスタイル */
         .modal {
             display: none;
@@ -273,6 +315,25 @@
                     </div>
                 </div>
             </div>
+        </div>
+
+        <!-- 注意事項セクション -->
+        <div class="notice-section">
+            <h2 class="notice-title">
+                ⚠️ 注意事項
+            </h2>
+            <ul class="notice-list">
+                <li class="notice-item">
+                    <div class="notice-text">
+                        <strong>対応言語以外のものをノートに記述すると対応している言語の音声を代用して読み上げますので注意してください。</strong>
+                    </div>
+                </li>
+                <li class="notice-item">
+                    <div class="notice-text">
+                        <strong>一時停止ボタンを２回連続でクリックしてしまうと最初からの再生となります。</strong>
+                    </div>
+                </li>
+            </ul>
         </div>
     </div>
 
