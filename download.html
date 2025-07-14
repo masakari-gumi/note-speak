@@ -256,14 +256,27 @@
 
     <script>
         function downloadFile() {
-            const btn = document.querySelector('.download-btn');
-            btn.innerHTML = '準備中...';
-            
-            setTimeout(() => {
-                btn.innerHTML = 'ダウンロード';
-                alert('ダウンロードを開始します');
-            }, 1500);
-        }
+    const btn = document.querySelector('.download-btn');
+    btn.innerHTML = '準備中...';
+    btn.disabled = true;
+    
+    // あなたの実際のGitHub Release URL
+    const downloadUrl = 'https://github.com/masakari-gumi/note-speak/releases/download/notespeak/default.pptm';
+    
+    // ダウンロード実行
+    const link = document.createElement('a');
+    link.href = downloadUrl;
+    link.download = '多言語音声読み上げPowerPoint.pptm';
+    link.target = '_blank';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    
+    setTimeout(() => {
+        btn.innerHTML = 'ダウンロード';
+        btn.disabled = false;
+    }, 2000);
+}
 
         function openModal(image) {
             const modal = document.getElementById('imageModal');
