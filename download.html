@@ -93,12 +93,48 @@
             box-shadow: 0 6px 20px rgba(0,0,0,0.15);
         }
 
+        .usage-guide-section {
+            text-align: center;
+            padding: 30px 20px;
+            background: #e8f5e8;
+            border-radius: 12px;
+            margin-top: 30px;
+        }
+
+        .usage-guide-title {
+            font-size: 1.3em;
+            color: #155724;
+            margin-bottom: 15px;
+        }
+
+        .usage-guide-link {
+            color: #1976d2;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.2em;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 25px;
+            background: #ffffff;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .usage-guide-link:hover {
+            color: #1565c0;
+            background: #f8f9fa;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+        }
+
         .download-section {
             text-align: center;
             padding: 40px 20px;
             background: #fafafa;
             border-radius: 12px;
-            margin-top: 30px;
+            margin-top: 20px;
         }
 
         .download-btn {
@@ -235,6 +271,13 @@
             </div>
         </div>
 
+        <div class="usage-guide-section">
+            <h3 class="usage-guide-title">詳しい使用方法はこちら</h3>
+            <a href="https://masakari-gumi.github.io/note-speak/step.html" class="usage-guide-link" target="_blank">
+                使用方法ガイド
+            </a>
+        </div>
+
         <div class="download-section">
             <button class="download-btn" onclick="downloadFile()">
                 ダウンロード
@@ -254,53 +297,69 @@
         </div>
     </div>
 
-   <script>
-    function downloadFile() {
-        const btn = document.querySelector('.download-btn');
-        btn.innerHTML = 'ダウンロード中...';
-        btn.disabled = true;
-        
-        const downloadUrl = 'https://github.com/masakari-gumi/note-speak/releases/download/pptm/default.pptm';
-        
-        // シンプルな直接ダウンロード
-        const link = document.createElement('a');
-        link.href = downloadUrl;
-        link.download = '多言語音声読み上げPowerPoint.pptm';
-        link.target = '_blank';
-        link.style.display = 'none';
-        
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-        
-        setTimeout(() => {
-            btn.innerHTML = 'ダウンロード';
-            btn.disabled = false;
-        }, 2000);
-    }
-
-    function openModal(image) {
-        const modal = document.getElementById('imageModal');
-        const modalImage = document.getElementById('modalImage');
-        
-        modal.style.display = 'block';
-        modalImage.src = image.src;
-        modalImage.alt = image.alt;
-        
-        document.body.style.overflow = 'hidden';
-    }
-
-    function closeModal() {
-        const modal = document.getElementById('imageModal');
-        modal.style.display = 'none';
-        document.body.style.overflow = 'auto';
-    }
-
-    document.addEventListener('keydown', function(event) {
-        if (event.key === 'Escape') {
-            closeModal();
+    <script>
+        function downloadFile() {
+            const btn = document.querySelector('.download-btn');
+            btn.innerHTML = 'ダウンロード中...';
+            btn.disabled = true;
+            
+            // GitHub Release URL
+            const downloadUrl = 'https://github.com/masakari-gumi/note-speak/releases/download/notespeak/default.pptm';
+            
+            // 確実にダウンロードフォルダに保存
+            fetch(downloadUrl)
+                .then(response => response.blob())
+                .then(blob => {
+                    const url = window.URL.createObjectURL(blob);
+                    const link = document.createElement('a');
+                    link.href = url;
+                    link.download = '多言語音声読み上げPowerPoint.pptm';
+                    link.style.display = 'none';
+                    
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                    
+                    window.URL.revokeObjectURL(url);
+                })
+                .catch(error => {
+                    console.error('ダウンロードエラー:', error);
+                    // フォールバック: 新しいタブで開く
+                    window.open(downloadUrl, '_blank');
+                });
+            
+            setTimeout(() => {
+                btn.innerHTML = 'ダウンロード';
+                btn.disabled = false;
+            }, 2000);
         }
-    });
-</script>
+
+        function openModal(image) {
+            const modal = document.getElementById('imageModal');
+            const modalImage = document.getElementById('modalImage');
+            
+            modal.style.display = 'block';
+            modalImage.src = image.src;
+            modalImage.alt = image.alt;
+            
+            // bodyのスクロールを無効化
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('imageModal');
+            modal.style.display = 'none';
+            
+            // bodyのスクロールを有効化
+            document.body.style.overflow = 'auto';
+        }
+
+        // ESCキーでモーダルを閉じる
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeModal();
+            }
+        });
+    </script>
 </body>
 </html>
