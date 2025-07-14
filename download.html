@@ -300,7 +300,7 @@
     <script>
     function downloadFile() {
         const btn = document.querySelector('.download-btn');
-        btn.innerHTML = '⏳ ダウンロード中...';
+        btn.innerHTML = 'ダウンロード中...';
         btn.disabled = true;
         
         // 正しいGitHub Release URL
@@ -318,7 +318,7 @@
         document.body.removeChild(link);
         
         setTimeout(() => {
-            btn.innerHTML = '📥 ダウンロード';
+            btn.innerHTML = 'ダウンロード';
             btn.disabled = false;
         }, 2000);
     }
