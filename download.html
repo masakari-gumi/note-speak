@@ -257,38 +257,24 @@
    <script>
     function downloadFile() {
         const btn = document.querySelector('.download-btn');
-        btn.innerHTML = 'ダウンロード中...';
+        btn.innerHTML = '⏳ ダウンロード中...';
         btn.disabled = true;
         
         const downloadUrl = 'https://github.com/masakari-gumi/note-speak/releases/download/pptm/default.pptm';
         
-        fetch(downloadUrl)
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
-                }
-                return response.blob();
-            })
-            .then(blob => {
-                const url = window.URL.createObjectURL(blob);
-                const link = document.createElement('a');
-                link.href = url;
-                link.download = '多言語音声読み上げPowerPoint.pptm';
-                link.style.display = 'none';
-                
-                document.body.appendChild(link);
-                link.click();
-                document.body.removeChild(link);
-                
-                window.URL.revokeObjectURL(url);
-            })
-            .catch(error => {
-                console.error('ダウンロードエラー:', error);
-                alert('ダウンロードに失敗しました: ' + error.message);
-            });
+        // シンプルな直接ダウンロード
+        const link = document.createElement('a');
+        link.href = downloadUrl;
+        link.download = '多言語音声読み上げPowerPoint.pptm';
+        link.target = '_blank';
+        link.style.display = 'none';
+        
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
         
         setTimeout(() => {
-            btn.innerHTML = 'ダウンロード';
+            btn.innerHTML = '📥 ダウンロード';
             btn.disabled = false;
         }, 2000);
     }
