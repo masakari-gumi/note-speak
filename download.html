@@ -18,6 +18,17 @@
             line-height: 1.6;
         }
 
+        /* 左上のロゴ画像 */
+        .logo {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            width: 200px;
+            height: auto;
+            z-index: 100;
+            cursor: pointer;
+        }
+
         .container {
             max-width: 900px;
             margin: 40px auto;
@@ -28,6 +39,7 @@
             text-align: center;
             padding: 40px 20px;
             border-bottom: 2px solid #f0f0f0;
+            margin-top: 60px; /* ロゴ分の余白 */
         }
 
         .title {
@@ -229,6 +241,16 @@
         }
 
         @media (max-width: 768px) {
+            .logo {
+                width: 150px;
+                top: 10px;
+                left: 10px;
+            }
+            
+            .header {
+                margin-top: 50px;
+            }
+            
             .images-container {
                 flex-direction: column;
                 align-items: center;
@@ -248,6 +270,9 @@
     </style>
 </head>
 <body>
+    <!-- 左上のロゴ画像 -->
+    <img src="https://page1.genspark.site/v1/base64_upload/e8a31722a6ef34cd9e2efd1f2e0f860b" alt="Masakari Logo" class="logo" onclick="window.open('https://masakarigumi.com/', '_blank')">
+
     <div class="container">
         <div class="header">
             <h1 class="title">多言語音声読み上げPowerpoint</h1>
@@ -347,6 +372,6 @@
             closeModal();
         }
     });
-</script>
+    </script>
 </body>
 </html>
