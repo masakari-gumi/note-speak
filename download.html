@@ -326,30 +326,42 @@
 
     <script>
     function downloadFile() {
-        const btn = document.querySelector('.download-btn');
-        btn.innerHTML = 'ダウンロード中...';
-        btn.disabled = true;
-        
-        // 正しいGitHub Release URL
-        const downloadUrl = 'https://github.com/masakari-gumi/note-speak/releases/download/pptm/default.pptm';
-        const downloadUrl = 'https://github.com/masakari-gumi/note-speak/releases/download/pptm/Customizations.exportedUI';
-        
-        // 前回成功した方法（fetchを使わない）
-        const link = document.createElement('a');
-        link.href = downloadUrl;
-        link.download = '多言語音声読み上げPowerPoint.pptm';
-        link.target = '_blank';
-        link.style.display = 'none';
-        
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-        
+    const btn = document.querySelector('.download-btn');
+    btn.innerHTML = 'ダウンロード中...';
+    btn.disabled = true;
+    
+    // 2つのファイルのダウンロードURL
+    const downloadUrls = [
+        {
+            url: 'https://github.com/masakari-gumi/note-speak/releases/download/pptm/default.pptm',
+            filename: '多言語音声読み上げPowerPoint.pptm'
+        },
+        {
+            url: 'https://github.com/masakari-gumi/note-speak/releases/download/pptm/Customizations.exportedUI',
+            filename: 'Customizations.exportedUI'
+        }
+    ];
+    
+    // 各ファイルを順番にダウンロード
+    downloadUrls.forEach((fileData, index) => {
         setTimeout(() => {
-            btn.innerHTML = 'ダウンロード';
-            btn.disabled = false;
-        }, 2000);
-    }
+            const link = document.createElement('a');
+            link.href = fileData.url;
+            link.download = fileData.filename;
+            link.target = '_blank';
+            link.style.display = 'none';
+            
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }, index * 500); // 500ms間隔でダウンロード
+    });
+    
+    setTimeout(() => {
+        btn.innerHTML = 'ダウンロード';
+        btn.disabled = false;
+    }, 2000);
+}
 
     function openModal(image) {
         const modal = document.getElementById('imageModal');
