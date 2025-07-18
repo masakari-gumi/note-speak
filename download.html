@@ -168,6 +168,36 @@
             box-shadow: 0 6px 20px rgba(25, 118, 210, 0.4);
         }
 
+        .ui-download-btn {
+            background: #4caf50;
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 20px;
+            font-size: 1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 3px 10px rgba(76, 175, 80, 0.3);
+            margin-top: 15px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .ui-download-btn:hover {
+            background: #45a049;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(76, 175, 80, 0.4);
+        }
+
+        .ui-download-btn:disabled {
+            background: #cccccc;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
         .windows-notice {
             background: #ffebee;
             color: #c62828;
@@ -306,8 +336,12 @@
         </div>
 
         <div class="download-section">
-            <button class="download-btn" onclick="downloadFile()">
+            <button class="download-btn" onclick="downloadMainFile()">
                 ダウンロード
+            </button>
+            
+            <button class="ui-download-btn" onclick="downloadUIFile()">
+                UIダウンロード
             </button>
             
             <div class="windows-notice">
@@ -325,43 +359,51 @@
     </div>
 
     <script>
-    function downloadFile() {
-    const btn = document.querySelector('.download-btn');
-    btn.innerHTML = 'ダウンロード中...';
-    btn.disabled = true;
-    
-    // 2つのファイルのダウンロードURL
-    const downloadUrls = [
-        {
-            url: 'https://github.com/masakari-gumi/note-speak/releases/download/pptm/default.pptm',
-            filename: '多言語音声読み上げPowerPoint.pptm'
-        },
-        {
-            url: 'https://github.com/masakari-gumi/note-speak/releases/download/pptm/Customizations.exportedUI',
-            filename: 'Customizations.exportedUI'
-        }
-    ];
-    
-    // 各ファイルを順番にダウンロード
-    downloadUrls.forEach((fileData, index) => {
+    function downloadMainFile() {
+        const btn = document.querySelector('.download-btn');
+        btn.innerHTML = 'ダウンロード中...';
+        btn.disabled = true;
+        
+        const downloadUrl = 'https://github.com/masakari-gumi/note-speak/releases/download/pptm/default.pptm';
+        
+        const link = document.createElement('a');
+        link.href = downloadUrl;
+        link.download = '多言語音声読み上げPowerPoint.pptm';
+        link.target = '_blank';
+        link.style.display = 'none';
+        
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        
         setTimeout(() => {
-            const link = document.createElement('a');
-            link.href = fileData.url;
-            link.download = fileData.filename;
-            link.target = '_blank';
-            link.style.display = 'none';
-            
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-        }, index * 500); // 500ms間隔でダウンロード
-    });
-    
-    setTimeout(() => {
-        btn.innerHTML = 'ダウンロード';
-        btn.disabled = false;
-    }, 2000);
-}
+            btn.innerHTML = 'ダウンロード';
+            btn.disabled = false;
+        }, 2000);
+    }
+
+    function downloadUIFile() {
+        const btn = document.querySelector('.ui-download-btn');
+        btn.innerHTML = 'UIダウンロード中...';
+        btn.disabled = true;
+        
+        const downloadUrl = 'https://github.com/masakari-gumi/note-speak/releases/download/pptm/Customizations.exportedUI';
+        
+        const link = document.createElement('a');
+        link.href = downloadUrl;
+        link.download = 'Customizations.exportedUI';
+        link.target = '_blank';
+        link.style.display = 'none';
+        
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        
+        setTimeout(() => {
+            btn.innerHTML = 'UIダウンロード';
+            btn.disabled = false;
+        }, 2000);
+    }
 
     function openModal(image) {
         const modal = document.getElementById('imageModal');
