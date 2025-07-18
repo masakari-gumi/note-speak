@@ -150,6 +150,49 @@
             margin-bottom: 8px;
         }
 
+        /* 動画セクション用スタイル */
+        .video-step {
+            background: #f0f8ff;
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            text-align: center;
+        }
+
+        .video-step-number {
+            display: inline-block;
+            background: #4caf50;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            font-weight: bold;
+            font-size: 1.2em;
+            margin-bottom: 20px;
+        }
+
+        .video-step-title {
+            font-size: 1.4em;
+            color: #2c3e50;
+            margin-bottom: 30px;
+            font-weight: bold;
+        }
+
+        .video-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .video-container video {
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border: 1px solid #e0e0e0;
+        }
+
         /* 注意事項セクション */
         .notice-section {
             background: #fafafa;
@@ -380,6 +423,18 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+
+        <!-- 速度調整機能の追加方法 -->
+        <div class="video-step">
+            <div class="video-step-number">5</div>
+            <h2 class="video-step-title">速度調整機能の追加方法</h2>
+            <div class="video-container">
+                <video controls>
+                    <source src="https://page.gensparksite.com/get_upload_url/a8c305c22500d49f55a9a56543059c53458b8cc598bd2ebc1bf5d1b7e8c6af7b/default/dcd717b4-1901-4db0-9ee3-b2f151820381" type="video/mp4">
+                    お使いのブラウザは動画タグをサポートしていません。
+                </video>
             </div>
         </div>
 
