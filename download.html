@@ -956,23 +956,30 @@
             });
         });
 
-        // ダウンロード関数
+         // ダウンロード関数
         function downloadFile() {
             const btn = document.querySelector('.download-btn');
             const originalText = btn.textContent;
-    
+            
             btn.textContent = 'ダウンロード中...';
             btn.disabled = true;
-    // 現在時刻をパラメータに追加してキャッシュ回避
-            const timestamp = new Date().getTime();
-            const downloadUrl = `https://masakari-gumi.github.io/note-speak/default.pptm?v=${timestamp}`;
-    
-            window.location.href = downloadUrl;
-    
+            
+            const downloadUrl = 'https://masakari-gumi.github.io/note-speak/default.pptm';
+            
+            const link = document.createElement('a');
+            link.href = downloadUrl;
+            link.download = '多言語音声読み上げPowerPoint.pptm';
+            link.target = '_blank';
+            link.style = 'none';
+            
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            
             setTimeout(() => {
                 btn.textContent = originalText;
                 btn.disabled = false;
-            }, 1000);
+            }, 2000);
         }
 
         // モーダル関数
@@ -1004,6 +1011,7 @@
     </script>
 </body>
 </html>
+
 
 
 
