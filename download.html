@@ -958,29 +958,20 @@
 
         // ダウンロード関数
         function downloadFile() {
-            const btn = document.querySelector('.download-btn');
-            const originalText = btn.textContent;
-            
-            btn.textContent = 'ダウンロード中...';
-            btn.disabled = true;
-            
-            const downloadUrl = 'https://github.com/masakari-gumi/note-speak/blob/main/default.pptm';
-            
-            const link = document.createElement('a');
-            link.href = downloadUrl;
-            link.download = '多言語音声読み上げPowerPoint.pptm';
-            link.target = '_blank';
-            link.style = 'none';
-            
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-            
-            setTimeout(() => {
-                btn.textContent = originalText;
-                btn.disabled = false;
-            }, 2000);
-        }
+    const btn = document.querySelector('.download-btn');
+    const originalText = btn.textContent;
+    
+    btn.textContent = 'ダウンロード中...';
+    btn.disabled = true;
+    
+    // シンプルで確実な方法
+    window.location.href = 'https://masakari-gumi.github.io/note-speak/default.pptm';
+    
+    setTimeout(() => {
+        btn.textContent = originalText;
+        btn.disabled = false;
+    }, 1000);
+}
 
         // モーダル関数
         function openModal(image) {
@@ -1011,5 +1002,6 @@
     </script>
 </body>
 </html>
+
 
 
