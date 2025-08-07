@@ -958,20 +958,22 @@
 
         // ダウンロード関数
         function downloadFile() {
-    const btn = document.querySelector('.download-btn');
-    const originalText = btn.textContent;
+            const btn = document.querySelector('.download-btn');
+            const originalText = btn.textContent;
     
-    btn.textContent = 'ダウンロード中...';
-    btn.disabled = true;
+            btn.textContent = 'ダウンロード中...';
+            btn.disabled = true;
+    // 現在時刻をパラメータに追加してキャッシュ回避
+            const timestamp = new Date().getTime();
+            const downloadUrl = `https://masakari-gumi.github.io/note-speak/default.pptm?v=${timestamp}`;
     
-    // シンプルで確実な方法
-    window.location.href = 'https://masakari-gumi.github.io/note-speak/default.pptm';
+            window.location.href = downloadUrl;
     
-    setTimeout(() => {
-        btn.textContent = originalText;
-        btn.disabled = false;
-    }, 1000);
-}
+            setTimeout(() => {
+                btn.textContent = originalText;
+                btn.disabled = false;
+            }, 1000);
+        }
 
         // モーダル関数
         function openModal(image) {
@@ -1002,6 +1004,7 @@
     </script>
 </body>
 </html>
+
 
 
 
