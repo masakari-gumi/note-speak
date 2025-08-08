@@ -650,7 +650,7 @@
             transition: all var(--transition-quick);
             min-width: 200px;
             height: 56px;
-            margin: 40px auto 0;
+            margin: 10px auto 0;
             display: flex; /* flexに変更 */
             align-items: center; /* 縦中央揃え */
             justify-content: center; /* 横中央揃え */
@@ -660,6 +660,45 @@
         .download-btn:hover {
             background: var(--primary-dark);
             transform: translateY(-2px);
+        }
+
+        /* ダウンロードボタンコンテナ */
+        .download-buttons {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .download-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            max-width: 500px;
+            width: 100%;
+        }
+
+        .download-description {
+            font-size: 15px;
+            line-height: 1.4;
+            color: var(--text-secondary);
+            margin-bottom: 15px;
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        .download-note {
+            font-size: 13px;
+            line-height: 1.4;
+            color: var(--accent);
+            font-weight: 500;
+            margin-top: 12px;
+            text-align: center;
+            padding: 10px 16px;
+            background: rgba(88, 86, 214, 0.1);
+            border-radius: var(--radius-small);
+            border: 1px solid rgba(88, 86, 214, 0.2);
         }
 
         /* モーダル */
@@ -842,7 +881,15 @@
             .download-btn {
                 width: 90%;
                 max-width: 280px;
-                margin: 30px auto 0;
+                margin: 40px auto 0;
+            }
+
+            .download-buttons {
+                gap: 25px;
+            }
+
+            .download-item {
+                max-width: 100%;
             }
 
             .password-container {
@@ -1017,9 +1064,28 @@
                         <p class="section-subtitle">多言語プレゼンテーションを今すぐ始めましょう<br>※使用前に事前設定と使用方法を必ず参照してください</p>
                     </div>
                     
-                    <button class="download-btn" onclick="downloadFile()">
-                        ダウンロード
-                    </button>
+                    <div class="download-buttons">
+                        <div class="download-item">
+                            <div class="download-description">
+                                PowerPoint用マクロファイル（.pptm）
+                            </div>
+                            <button class="download-btn" onclick="downloadFile()">
+                                PowerPointファイルをダウンロード
+                            </button>
+                        </div>
+
+                        <div class="download-item">
+                            <div class="download-description">
+                                PowerPoint用アドインファイル（.ppam）
+                            </div>
+                            <button class="download-btn" onclick="downloadAddin()">
+                                アドインファイルをダウンロード
+                            </button>
+                            <div class="download-note">
+                                このファイルは必ず<br>C:\Users\ユーザー名\AppData\Roaming\Microsoft\AddIns<br>に保存してください
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -1153,9 +1219,9 @@
             });
         });
 
-         // ダウンロード関数
+        // ダウンロード関数（既存のPowerPointファイル）
         function downloadFile() {
-            const btn = document.querySelector('.download-btn');
+            const btn = event.target;
             const originalText = btn.textContent;
             
             btn.textContent = 'ダウンロード中...';
@@ -1166,7 +1232,32 @@
             const link = document.createElement('a');
             link.href = downloadUrl;
             link.target = '_blank';
-            link.style = 'none';
+            link.style.display = 'none';
+            
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            
+            setTimeout(() => {
+                btn.textContent = originalText;
+                btn.disabled = false;
+            }, 2000);
+        }
+
+        // 新しいアドインダウンロード関数
+        function downloadAddin() {
+            const btn = event.target;
+            const originalText = btn.textContent;
+            
+            btn.textContent = 'ダウンロード中...';
+            btn.disabled = true;
+            
+            const downloadUrl = 'https://masakari-gumi.github.io/note-speak/default.ppam';
+            
+            const link = document.createElement('a');
+            link.href = downloadUrl;
+            link.target = '_blank';
+            link.style.display = 'none';
             
             document.body.appendChild(link);
             link.click();
