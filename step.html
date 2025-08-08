@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>音声読み上げPowerpoint</title>
+    <title>多言語音声読み上げPowerpoint - 使用方法ガイド</title>
     <style>
         * {
             margin: 0;
@@ -40,7 +41,8 @@
             padding: 30px 20px;
             border-bottom: 2px solid #f0f0f0;
             margin-bottom: 40px;
-            margin-top: 60px; /* ロゴ分の余白 */
+            margin-top: 60px;
+            /* ロゴ分の余白 */
         }
 
         .title {
@@ -59,7 +61,7 @@
             border-radius: 12px;
             padding: 30px;
             margin-bottom: 30px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
         }
 
         .step-security {
@@ -109,7 +111,7 @@
         .step-image img {
             width: 100%;
             border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
             border: 1px solid #e0e0e0;
             cursor: pointer;
             transition: transform 0.3s ease;
@@ -130,7 +132,7 @@
             background: white;
             padding: 20px;
             border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
         }
 
         .step-text-security {
@@ -156,7 +158,7 @@
             border-radius: 12px;
             padding: 30px;
             margin-bottom: 30px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
             text-align: center;
         }
 
@@ -175,7 +177,7 @@
         .video-container video {
             width: 100%;
             border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
             border: 1px solid #e0e0e0;
         }
 
@@ -185,7 +187,7 @@
             border-radius: 12px;
             padding: 30px;
             margin-top: 30px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
         }
 
         .notice-title {
@@ -208,7 +210,7 @@
             padding: 15px;
             margin-bottom: 15px;
             border-radius: 8px;
-            box-shadow: 0 1px 5px rgba(0,0,0,0.1);
+            box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
         }
 
         .notice-item:last-child {
@@ -230,7 +232,7 @@
             top: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0,0,0,0.8);
+            background-color: rgba(0, 0, 0, 0.8);
             animation: fadeIn 0.3s ease;
         }
 
@@ -249,7 +251,7 @@
             max-width: 100%;
             max-height: 80vh;
             border-radius: 8px;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
             animation: zoomIn 0.3s ease;
         }
 
@@ -269,13 +271,25 @@
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
         }
 
         @keyframes zoomIn {
-            from { transform: scale(0.8); opacity: 0; }
-            to { transform: scale(1); opacity: 1; }
+            from {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
         }
 
         @media (max-width: 768px) {
@@ -284,27 +298,31 @@
                 top: 10px;
                 left: 10px;
             }
-            
+
             .header {
                 margin-top: 50px;
             }
-            
+
             .step-content {
                 flex-direction: column;
             }
+
             .step-description {
                 padding-left: 0;
                 padding-top: 20px;
             }
+
             .container {
                 padding: 10px;
             }
         }
     </style>
 </head>
+
 <body>
     <!-- 左上のロゴ画像 -->
-    <img src="https://page1.genspark.site/v1/base64_upload/e38546897c376c81ce8cf65857022f90" alt="Masakari Logo" class="logo" onclick="window.open('https://masakarigumi.com/', '_blank')">
+    <img src="https://page1.genspark.site/v1/base64_upload/e38546897c376c81ce8cf65857022f90" alt="Masakari Logo"
+        class="logo" onclick="window.open('https://masakarigumi.com/', '_blank')">
 
     <div class="container">
         <div class="header">
@@ -318,7 +336,8 @@
             <h2 class="step-title step-title-security">セキュリティ設定（重要）</h2>
             <div class="step-content">
                 <div class="step-image">
-                    <img src="https://page1.genspark.site/v1/base64_upload/d1c8bcbd1c3cea6e3d92be2ccbddd8d7" alt="PowerPointプロパティ画面" onclick="openModal(this)">
+                    <img src="https://page1.genspark.site/v1/base64_upload/d1c8bcbd1c3cea6e3d92be2ccbddd8d7"
+                        alt="PowerPointプロパティ画面" onclick="openModal(this)">
                 </div>
                 <div class="step-description">
                     <div class="step-text step-text-security">
@@ -342,7 +361,8 @@
             <h2 class="step-title">ノートに文章を入力</h2>
             <div class="step-content">
                 <div class="step-image">
-                    <img src="https://page1.genspark.site/v1/base64_upload/593260b9edf486ec73ab676a28458cf1" alt="PowerPoint編集画面" onclick="openModal(this)">
+                    <img src="https://page1.genspark.site/v1/base64_upload/593260b9edf486ec73ab676a28458cf1"
+                        alt="PowerPoint編集画面" onclick="openModal(this)">
                 </div>
                 <div class="step-description">
                     <div class="step-text">
@@ -361,7 +381,8 @@
             <h2 class="step-title">読み上げ開始</h2>
             <div class="step-content">
                 <div class="step-image">
-                    <img src="https://page1.genspark.site/v1/base64_upload/d9b370aa0ddc545a4659af0275239eea" alt="再生ボタン" onclick="openModal(this)">
+                    <img src="https://page1.genspark.site/v1/base64_upload/d9b370aa0ddc545a4659af0275239eea" alt="再生ボタン"
+                        onclick="openModal(this)">
                 </div>
                 <div class="step-description">
                     <div class="step-text">
@@ -380,7 +401,8 @@
             <h2 class="step-title">一時停止</h2>
             <div class="step-content">
                 <div class="step-image">
-                    <img src="https://page1.genspark.site/v1/base64_upload/77cdeae72e9771452e904b032f49e19e" alt="一時停止ボタン" onclick="openModal(this)">
+                    <img src="https://page1.genspark.site/v1/base64_upload/77cdeae72e9771452e904b032f49e19e"
+                        alt="一時停止ボタン" onclick="openModal(this)">
                 </div>
                 <div class="step-description">
                     <div class="step-text">
@@ -399,7 +421,8 @@
             <h2 class="step-title">完全停止</h2>
             <div class="step-content">
                 <div class="step-image">
-                    <img src="https://page1.genspark.site/v1/base64_upload/26400893eb5c1b6e70260d6ac167f4af" alt="停止ボタン" onclick="openModal(this)">
+                    <img src="https://page1.genspark.site/v1/base64_upload/26400893eb5c1b6e70260d6ac167f4af" alt="停止ボタン"
+                        onclick="openModal(this)">
                 </div>
                 <div class="step-description">
                     <div class="step-text">
@@ -414,11 +437,10 @@
 
         <!-- 速度調整機能の追加方法 -->
         <div class="video-step">
-            <h2 class="video-step-title">速度調整機能の追加方法</h2>
+            <h2 class="video-step-title">速度調整機能・言語設定機能の追加方法</h2>
             <div class="video-container">
                 <video controls>
-                    <source src="https://page.gensparksite.com/get_upload_url/a8c305c22500d49f55a9a56543059c53458b8cc598bd2ebc1bf5d1b7e8c6af7b/default/dcd717b4-1901-4db0-9ee3-b2f151820381" type="video/mp4">
-                    お使いのブラウザは動画タグをサポートしていません。
+                    <source src="https://masakari-gumi.github.io/note-speak/tejyun.mp4" type="video/mp4">
                 </video>
             </div>
         </div>
@@ -432,7 +454,7 @@
                 <li class="notice-item">
                     <div class="notice-text">
                         <strong>対応言語以外のものをノートに記述すると対応している言語の音声で代用して読み上げるので注意してください</strong><br>
-                        <p>例:入力した言語/オランダ語 | 読み上げで使われる音声/インドネシア語</p>
+                        <p>例:入力した言語/オランダ語 | 読み上げで使われる音声/設定した言語</p>
                     </div>
                 </li>
                 <li class="notice-item">
@@ -440,17 +462,12 @@
                         <strong>一時停止ボタンを２回連続でクリックしてしまうと最初からの再生となります。</strong>
                     </div>
                 </li>
-                <li class="notice-item">
+                <ul class="notice-item">
                     <div class="notice-text">
                         <strong>一度再生ボタンを押したら、停止もしくは一時停止を押すまで再生はとまりません。</strong><br>
-                        <p>例:スライドの切り替え、スライドの終了、Powerpointを閉じても再生は止まらない</p>
+                        <p>例:スライドの切り替え、スライドの終了では止まらない</p>
                     </div>
-                </li>
-                <li class="notice-item">
-                    <div class="notice-text">
-                        <strong>文章が短すぎると言語を適切に判定できないことがあります。</strong>
-                    </div>
-                </li>
+                </ul>
             </ul>
         </div>
     </div>
@@ -467,11 +484,11 @@
         function openModal(image) {
             const modal = document.getElementById('imageModal');
             const modalImage = document.getElementById('modalImage');
-            
+
             modal.style.display = 'block';
             modalImage.src = image.src;
             modalImage.alt = image.alt;
-            
+
             document.body.style.overflow = 'hidden';
         }
 
@@ -481,11 +498,12 @@
             document.body.style.overflow = 'auto';
         }
 
-        document.addEventListener('keydown', function(event) {
+        document.addEventListener('keydown', function (event) {
             if (event.key === 'Escape') {
                 closeModal();
             }
         });
     </script>
 </body>
+
 </html>
