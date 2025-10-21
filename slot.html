@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>SLOT GAME</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: black;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+
+        .container {
+            text-align: center;
+            max-width: 800px;
+            width: 100%;
+        }
+
+        h1 {
+            color: white;
+            font-size: clamp(28px, 8vw, 48px);
+            margin-bottom: clamp(30px, 8vw, 60px);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .display-area {
+            background: white;
+            border-radius: clamp(16px, 3vw, 24px);
+            padding: clamp(30px, 6vw, 60px) clamp(20px, 4vw, 40px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            margin-bottom: clamp(20px, 4vw, 40px);
+            min-height: clamp(300px, 60vw, 500px);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .numbers-display {
+            display: flex;
+            gap: 0;
+            justify-content: center;
+            margin-bottom: clamp(25px, 5vw, 50px);
+            border: 3px solid #333;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .slot-container {
+            width: clamp(80px, 20vw, 120px);
+            height: clamp(80px, 20vw, 120px);
+            background: white;
+            border-right: 3px solid #333;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .slot-container:last-child {
+            border-right: none;
+        }
+
+        .slot-reel {
+            position: absolute;
+            width: 100%;
+            top: 0;
+            left: 0;
+            display: flex;
+            flex-direction: column;
+            transition: none;
+        }
+
+        .slot-reel.spinning {
+            animation: spin 0.1s linear infinite;
+        }
+
+        .slot-reel.stopping {
+            transition: top 0.5s cubic-bezier(0.25, 0.1, 0.25, 1);
+        }
+
+        @keyframes spin {
+            0% {
+                top: 0;
+            }
+
+            100% {
+                top: calc(-10 * clamp(80px, 20vw, 120px));
+            }
+        }
+
+        .color-placeholder {
+            width: clamp(120px, 30vw, 200px);
+            height: clamp(120px, 30vw, 200px);
+            border-radius: 50%;
+            background: #f0f0f0;
+            border: 3px solid #333;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: clamp(16px, 4vw, 20px);
+            color: #ccc;
+        }
+
+        .slot-number {
+            width: clamp(80px, 20vw, 120px);
+            height: clamp(80px, 20vw, 120px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: clamp(48px, 12vw, 72px);
+            font-weight: 900;
+            font-family: 'Impact', 'Arial Black', sans-serif;
+            color: #ff0000;
+            text-shadow: 2px 2px 0 #000,
+                -1px -1px 0 #000,
+                1px -1px 0 #000,
+                -1px 1px 0 #000,
+                1px 1px 0 #000,
+                3px 3px 6px rgba(0, 0, 0, 0.5);
+            letter-spacing: -1px;
+        }
+
+        .color-slot-container {
+            width: clamp(120px, 30vw, 200px);
+            height: clamp(120px, 30vw, 200px);
+            border-radius: 50%;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            border: 4px solid #333;
+        }
+
+        .color-reel {
+            position: absolute;
+            width: 100%;
+            top: 0;
+            left: 0;
+            display: flex;
+            flex-direction: column;
+            transition: none;
+        }
+
+        .color-reel.spinning {
+            animation: colorSpin 0.15s linear infinite;
+        }
+
+        .color-reel.stopping {
+            transition: top 0.5s cubic-bezier(0.25, 0.1, 0.25, 1);
+        }
+
+        @keyframes colorSpin {
+            0% {
+                top: 0;
+            }
+
+            100% {
+                top: calc(-6 * clamp(120px, 30vw, 200px));
+            }
+        }
+
+        .color-item {
+            width: clamp(120px, 30vw, 200px);
+            height: clamp(120px, 30vw, 200px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .color-item.red {
+            background: red;
+        }
+
+        .color-item.white {
+            background: white;
+        }
+
+        .color-item.black {
+            background: black;
+        }
+
+        .waiting-text {
+            font-size: clamp(18px, 5vw, 28px);
+            color: #999;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 0.6;
+            }
+
+            50% {
+                opacity: 1;
+            }
+        }
+
+        .start-btn {
+            padding: clamp(15px, 4vw, 25px) clamp(40px, 10vw, 80px);
+            background: gray;
+            color: white;
+            border: none;
+            border-radius: 16px;
+            font-size: clamp(18px, 5vw, 28px);
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            touch-action: manipulation;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .start-btn:active {
+            transform: scale(0.95);
+        }
+
+        .start-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .particle {
+            position: fixed;
+            width: clamp(6px, 2vw, 10px);
+            height: clamp(6px, 2vw, 10px);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            animation: particle-fall 2s linear forwards;
+        }
+
+        @keyframes particle-fall {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .empty-slot {
+            width: clamp(80px, 20vw, 120px);
+            height: clamp(80px, 20vw, 120px);
+            background: #f8f8f8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ddd;
+            font-size: clamp(28px, 8vw, 40px);
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 10px;
+            }
+
+            .numbers-display {
+                border-width: 2px;
+            }
+
+            .slot-container {
+                border-right-width: 2px;
+            }
+
+            .color-slot-container,
+            .color-placeholder {
+                border-width: 2px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="display-area" id="displayArea">
+            <div class="numbers-display" id="numbersDisplay">
+                <div class="slot-container">
+                    <div class="empty-slot">?</div>
+                </div>
+                <div class="slot-container">
+                    <div class="empty-slot">?</div>
+                </div>
+                <div class="slot-container">
+                    <div class="empty-slot">?</div>
+                </div>
+            </div>
+            <div class="color-placeholder" id="colorPlaceholder">?</div>
+        </div>
+        <button class="start-btn" id="startBtn" onclick="startLottery()">抽選開始</button>
+    </div>
+
+    <script>
+        let isAnimating = false;
+
+        function getSlotSize() {
+            const container = document.querySelector('.slot-container');
+            return container ? container.offsetHeight : 120;
+        }
+
+        function getColorSize() {
+            const placeholder = document.querySelector('.color-placeholder');
+            return placeholder ? placeholder.offsetHeight : 200;
+        }
+
+        function createParticles() {
+            const colors = ['#FFD700', '#FFA500', '#FF69B4', '#00CED1', '#52be80', '#667eea'];
+            const particleCount = window.innerWidth < 768 ? 50 : 80;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = (Math.random() * window.innerWidth) + 'px';
+                particle.style.top = '-10px';
+                particle.style.background = colors[Math.floor(Math.random() * colors.length)];
+                particle.style.animationDelay = Math.random() * 0.5 + 's';
+                particle.style.animationDuration = (1.5 + Math.random()) + 's';
+                document.body.appendChild(particle);
+                setTimeout(() => particle.remove(), 3000);
+            }
+        }
+
+        function createNumberSlot(finalNumber, delay, container) {
+            const reel = document.createElement('div');
+            reel.className = 'slot-reel';
+
+            const numbers = [];
+            for (let i = 0; i < 10; i++) {
+                numbers.push(Math.floor(Math.random() * 100) + 1);
+            }
+            numbers.push(finalNumber);
+
+            numbers.forEach(num => {
+                const numDiv = document.createElement('div');
+                numDiv.className = 'slot-number';
+                numDiv.textContent = num;
+                reel.appendChild(numDiv);
+            });
+
+            container.innerHTML = '';
+            container.appendChild(reel);
+
+            setTimeout(() => {
+                reel.classList.add('spinning');
+
+                setTimeout(() => {
+                    reel.classList.remove('spinning');
+                    reel.classList.add('stopping');
+                    const slotSize = getSlotSize();
+                    reel.style.top = `-${slotSize * 10}px`;
+                }, 2500 + delay * 500);
+            }, delay * 200);
+        }
+
+        function createColorSlot(finalColor, delay) {
+            const container = document.createElement('div');
+            container.className = 'color-slot-container';
+
+            const reel = document.createElement('div');
+            reel.className = 'color-reel';
+
+            const colors = ['red', 'white', 'black', 'red', 'white', 'black'];
+            colors.push(finalColor);
+
+            colors.forEach(color => {
+                const colorDiv = document.createElement('div');
+                colorDiv.className = `color-item ${color}`;
+                reel.appendChild(colorDiv);
+            });
+
+            container.appendChild(reel);
+
+            setTimeout(() => {
+                reel.classList.add('spinning');
+
+                setTimeout(() => {
+                    reel.classList.remove('spinning');
+                    reel.classList.add('stopping');
+                    const colorSize = getColorSize();
+                    reel.style.top = `-${colorSize * 6}px`;
+                }, 3000);
+            }, delay);
+
+            return container;
+        }
+
+        function startLottery() {
+            if (isAnimating) return;
+            isAnimating = true;
+
+            const startBtn = document.getElementById('startBtn');
+            startBtn.disabled = true;
+
+            resetDisplay();
+
+            const winningNumbers = [];
+            while (winningNumbers.length < 3) {
+                const num = Math.floor(Math.random() * 100) + 1;
+                if (!winningNumbers.includes(num)) {
+                    winningNumbers.push(num);
+                }
+            }
+
+            const colors = ['red', 'white', 'black'];
+            const winningColor = colors[Math.floor(Math.random() * colors.length)];
+
+            const slotContainers = document.querySelectorAll('.slot-container');
+            winningNumbers.forEach((num, index) => {
+                createNumberSlot(num, index, slotContainers[index]);
+            });
+
+            setTimeout(() => {
+                const colorPlaceholder = document.getElementById('colorPlaceholder');
+                const colorSlot = createColorSlot(winningColor, 0);
+                colorPlaceholder.replaceWith(colorSlot);
+
+                setTimeout(() => {
+                    createParticles();
+                    startBtn.disabled = false;
+                    isAnimating = false;
+                }, 3500);
+            }, 4000);
+        }
+
+        function resetDisplay() {
+            const displayArea = document.getElementById('displayArea');
+            displayArea.innerHTML = `
+                <div class="numbers-display" id="numbersDisplay">
+                    <div class="slot-container">
+                        <div class="empty-slot">?</div>
+                    </div>
+                    <div class="slot-container">
+                        <div class="empty-slot">?</div>
+                    </div>
+                    <div class="slot-container">
+                        <div class="empty-slot">?</div>
+                    </div>
+                </div>
+                <div class="color-placeholder" id="colorPlaceholder">?</div>
+            `;
+        }
+
+        // 画面サイズ変更時の対応
+        let resizeTimer;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(() => {
+                if (!isAnimating) {
+                    resetDisplay();
+                }
+            }, 250);
+        });
+    </script>
+</body>
+
+</html>
